@@ -23,13 +23,13 @@ import { remarkGraphvizSvg } from "remark-graphviz-svg";
 import fs from "fs";
 
 const processor = unified()
-	.use(remarkParse)
-	.use(remarkGraphvizSvg)
-	.use(remarkRehype)
-	.use(rehypeStringify);
+  .use(remarkParse)
+  .use(remarkGraphvizSvg)
+  .use(remarkRehype)
+  .use(rehypeStringify);
 
 const content = await processor.process(
-	fs.readFileSync("example.md")
+  fs.readFileSync("example.md")
 );
 
 console.log(content.value);
@@ -42,7 +42,7 @@ Suppose the `example.md` has the following content:
 
 ```graphviz
 digraph {
-	A -> B
+  A -> B
 }
 ```
 ````
