@@ -1,3 +1,5 @@
+import { Plugin } from "unified";
+
 export type GraphvizEngine = "circo" | "dot" | "fdp" | "sfdp" | "neato" | "osage" | "patchwork" | "twopi";
 
 export interface RemarkGraphvizSvgOptions {
