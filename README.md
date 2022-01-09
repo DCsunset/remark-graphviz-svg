@@ -4,6 +4,12 @@
 
 A remark plugin to convert GraphViz code into SVG diagram
 
+## Features
+
+* Custom language name for code blocks
+* Support different GraphViz [engines](https://graphviz.org/docs/layouts/)
+* SVG Optimization using [svgo](https://github.com/svg/svgo)
+
 ## Installation
 
 ```
@@ -61,7 +67,7 @@ Then the output of the above code is similar to the following:
 
 * `language`: Render GraphViz diagrams on specific language blocks. (Default: `graphviz`)
 * `graphvizEngine`: GraphViz engine to use. See available engines [here](https://graphviz.org/docs/layouts/). (Default: `dot`)
-
+* `svgoOptions`: Override default svgo options. Set it to `null` to disable svgo. (Default: `defaultSvgoOptions`)
 
 ## License
 
