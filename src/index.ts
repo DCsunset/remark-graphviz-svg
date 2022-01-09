@@ -7,7 +7,7 @@ import rehypeParse from "rehype-parse";
 import hpccWasm from "@hpcc-js/wasm";
 
 export const remarkGraphvizSvg: Plugin<[RemarkGraphvizSvgOptions?]> = (options) => {
-	// Deconstruct options
+	// Destructure options
 	const {
 		language = "graphviz",
 		graphvizEngine = "dot"
