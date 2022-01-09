@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsc -p ./tsconfig.build.json",
-    "test": "node --loader ts-node/esm ./test/test.ts"
+    "test": "node --loader ts-node/esm ./test/test.ts",
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
