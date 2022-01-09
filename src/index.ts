@@ -5,12 +5,20 @@ import { Code, Parent } from "mdast";
 import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import hpccWasm from "@hpcc-js/wasm";
+import { optimize, OptimizeOptions, OptimizedError } from "svgo";
+
+export const defaultSvgoOptions: OptimizeOptions = {
+	plugins: [
+		"preset-default"
+	]
+};
 
 export const remarkGraphvizSvg: Plugin<[RemarkGraphvizSvgOptions?]> = (options) => {
 	// Destructure options
 	const {
 		language = "graphviz",
-		graphvizEngine = "dot"
+		graphvizEngine = "dot",
+		svgoOptions = defaultSvgoOptions
 	} = (options ?? {});
 
 	// transformer can be async
@@ -28,8 +36,19 @@ export const remarkGraphvizSvg: Plugin<[RemarkGraphvizSvgOptions?]> = (options) 
 
 		// Wait for rendering all instances
 		const diagrams = await Promise.all(instances.map(async ([code]) => {
-			const svg = await hpccWasm.graphviz
+			let svg = await hpccWasm.graphviz
 				.layout(code, "svg", graphvizEngine);
+			// optimize svg
+			if (svgoOptions !== null) {
+				const result = optimize(svg, svgoOptions);
+				if (result.error !== undefined) {
+					throw new Error(`Failed to optimize svg: ${result.error}`);
+				}
+				else {
+					svg = result.data;
+				}
+			}
+
 			return svg;
 		}));
 

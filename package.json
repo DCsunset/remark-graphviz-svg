@@ -41,7 +41,9 @@
   },
   "dependencies": {
     "@hpcc-js/wasm": "^1.12.7",
+    "@types/svgo": "^2.6.1",
     "rehype-parse": "^8.0.3",
+    "svgo": "^2.8.0",
     "unified": "^10.1.1",
     "unist-util-visit": "^4.1.0"
   }
